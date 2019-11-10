@@ -1,37 +1,9 @@
-/*
- * PM - 2017
- * lab0.c
- */
-
 #include <avr/io.h>
 #include <util/delay.h>
 #include "usart.h"
 
 
 #define F_CPU 16000000
-
-/* Aprinde led-ul PC0 la apasarea butonului PB2.
-
-void exemplu(void) {
-	DDRB &= ~(255 << PB0);
-
-	PORTB |= (255 << PB0);
-
-	DDRA |= (255 << PA0);
-
-	PORTA &= ~(255 << PA0);
-
-	while (1) {
-		btn_0_msk = 1;
-		while(btn_0_msk != 0){
-			if ((PINB & btn_0_msk) == 0)
-				btn_0 = btn_0 | btn_0_msk;
-			btn_0_msk = btn_0_msk << 1;
-		}
-
-		PORTA = btn_0;
-	}
-} */
 
 uint8_t decode_digit(uint8_t var){
 	switch(var){
@@ -164,7 +136,6 @@ void chess_play(void) {
 				PORTD = (((btn_digit & 240) >> 4) << PD4);
 				c1 = USART0_receive();
 				UDR0 = c1;
-				//USART0_transmit(c1);
 				_delay_ms(50);
 				c2 = USART0_receive();
 	            UDR0 = c2;
@@ -177,7 +148,6 @@ void chess_play(void) {
 				_delay_ms(50);
 				
 				_delay_ms(1000);
-				//sprintf(send_buffer, "%c%c%c%c", c1,c2,c3,c4);
 				//USART0_print(send_buffer);
 
 				phase = 0;
@@ -209,8 +179,6 @@ void chess_play(void) {
 			contor = 0;
 			while(contor < 8){
 
-				//sprintf(send_buffer, " Await:%d %d ", await, (1 << contor));
-				//USART0_print(send_buffer);
 				if ((PINA & (1 << contor)) == 0 && phase < 4 && (1 << contor) == await)  {
 					
 					phase++;
