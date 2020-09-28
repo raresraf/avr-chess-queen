@@ -2,7 +2,7 @@
 
 ## 2019 Project for Microprocessor Design course.
 
-- Documentation (ro): [here](docs/README.pdf)
+- Documentation (ro): [here](doc/README.pdf)
 
 
 
